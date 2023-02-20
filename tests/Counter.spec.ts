@@ -62,12 +62,9 @@ describe('Counter', () => {
         
         const increaseTimes = 3;
         for (let i = 0; i < increaseTimes; i++) {
-            console.log(`increase ${i+1}/${increaseTimes}`);
             const increaser = await blockchain.treasury('increaser' + 1);
             const counterBefore = await counter.getTotal();
-            console.log('counter before increasing', counterBefore);
             const increaseBy = Math.floor(Math.random() * 100);
-            console.log('increasing by', increaseBy);
             const increaseResult = await counter.send(
                 blockchain.sender(increaser.address),
                 toNano('0.05'), 
@@ -81,7 +78,6 @@ describe('Counter', () => {
                 success: true,
             });
             const counterAfter = await counter.getTotal();
-            console.log('counter after increasing', counterAfter);
             expect(counterAfter).toBe(counterBefore + increaseBy);
         }
     })
