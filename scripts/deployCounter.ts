@@ -4,7 +4,9 @@ import { compile, NetworkProvider } from '@ton-community/blueprint';
 
 export async function run(provider: NetworkProvider) {
     const counter = Counter.createFromConfig(
-        {}, 
+        {
+            counter: 10
+        }, 
         await compile('Counter')
     );
 

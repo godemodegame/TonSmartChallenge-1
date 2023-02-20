@@ -1,10 +1,12 @@
 import { Address, beginCell, Cell, Contract, contractAddress, ContractProvider, Sender, SendMode } from 'ton-core';
 
-export type CounterConfig = {};
+export type CounterConfig = {
+    counter: number;
+};
 
 export function counterConfigToCell(config: CounterConfig): Cell {
     return beginCell()
-        .storeUint(99, 64)
+        .storeUint(config.counter, 64)
         .endCell();
 }
 
