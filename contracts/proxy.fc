@@ -3,10 +3,10 @@
 global slice store::owner;
 
 () load_data() impure inline {
-    slice ds = get_data()
+    slice data_storage = get_data()
         .begin_parse();
-    store::owner = ds~load_msg_addr();
-    ds.end_parse();
+    store::owner = data_storage~load_msg_addr();
+    data_storage.end_parse();
 }
 
 slice parse_sender(cell in_msg_full) inline {

@@ -7,11 +7,11 @@ global slice store::manager;
 global slice store::memorized;
 
 () load_data() impure inline {
-    slice ds = get_data()
+    slice data_storage = get_data()
         .begin_parse();
 
-    store::manager = ds~load_msg_addr();
-    store::memorized = ds~load_msg_addr();
+    store::manager = data_storage~load_msg_addr();
+    store::memorized = data_storage~load_msg_addr();
 }
 
 () save_data() impure inline {
@@ -30,7 +30,12 @@ slice parse_sender(cell in_msg_full) inline {
     return sender;
 }
 
-() recv_internal(int my_balance, int msg_value, cell in_msg_full, slice in_msg_body) impure {
+() recv_internal(
+    int my_balance, 
+    int msg_value, 
+    cell in_msg_full, 
+    slice in_msg_body
+) impure {
     int op = in_msg_body~load_int(32);
     int query_id = in_msg_body~load_uint(64);
     slice sender = parse_sender(in_msg_full);

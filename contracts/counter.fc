@@ -3,10 +3,10 @@
 global int store::total;
 
 () load_data() impure inline {
-    slice ds = get_data()
+    slice data_storage = get_data()
         .begin_parse();
-    store::total = ds~load_uint(64);
-    ds.end_parse();
+    store::total = data_storage~load_uint(64);
+    data_storage.end_parse();
 }
 
 () save_data() impure inline {
